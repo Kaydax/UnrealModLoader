@@ -1,3 +1,5 @@
+#define UNICODE
+#define _UNICODE
 #include "LoaderUI.h"
 #include "Utilities/Logger.h"
 #include "Memory/mem.h"

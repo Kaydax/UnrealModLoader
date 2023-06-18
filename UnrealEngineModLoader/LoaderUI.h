@@ -1,10 +1,10 @@
 #pragma once
-#include <Windows.h>
+#include <windows.h>
 #include <inttypes.h>
 #include <string>
 #include <d3d11.h>
-#include <D3D11Shader.h>
-#include <D3Dcompiler.h>
+#include <d3d11shader.h>
+#include <d3dcompiler.h>
 #include "ImGui/imgui.h"
 #include "ImGui/imgui_internal.h"
 #include "ImGui/imgui_impl_dx11.h"

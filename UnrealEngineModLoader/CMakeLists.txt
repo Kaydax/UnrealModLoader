@@ -69,9 +69,10 @@ set(UNREALENGINEMODLOADER_FILES
 
 
 add_library(${PROJECT_NAME} SHARED ${IMGUI_FILES} ${INI_FILES} ${MINHOOK_FILES} ${UE4_FILES} ${UNREALENGINEMODLOADER_FILES})
+set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 17)
 
 # definitions
-target_compile_definitions(${PROJECT_NAME} PRIVATE UNREALENGINEMODLOADER_EXPORTS _UNICODE) # work-around, 'UnrealEngineModLoader_EXPORTS' should be used in source code
+target_compile_definitions(${PROJECT_NAME} PRIVATE UNREALENGINEMODLOADER_EXPORTS _UNICODE UNICODE) # work-around, 'UnrealEngineModLoader_EXPORTS' should be used in source code
 target_compile_definitions(${PROJECT_NAME} PUBLIC _USRDLL _CRT_SECURE_NO_WARNINGS)
 
 target_include_directories(${PROJECT_NAME} PUBLIC

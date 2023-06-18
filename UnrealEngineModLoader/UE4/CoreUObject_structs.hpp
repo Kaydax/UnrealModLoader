@@ -675,7 +675,7 @@ struct alignas(16) FTransform
 	unsigned char                                      UnknownData01[0x4];                                       // 0x002C(0x0004) MISSED OFFSET
 
 	inline FTransform()
-		: Rotation(FQuat::FQuat()), Translation(FVector::FVector()), Scale3D(FVector::FVector(1, 1, 1)), UnknownData00(""), UnknownData01("")
+		: Rotation(FQuat()), Translation(FVector()), Scale3D(FVector(1, 1, 1)), UnknownData00(""), UnknownData01("")
 	{ }
 };
 

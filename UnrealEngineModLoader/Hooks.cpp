@@ -92,8 +92,8 @@ namespace Hooks
 					}
 				}
 
-				UE4::FTransform transform = UE4::FTransform::FTransform();
-				UE4::FActorSpawnParameters spawnParams = UE4::FActorSpawnParameters::FActorSpawnParameters();
+				UE4::FTransform transform = UE4::FTransform();
+				UE4::FActorSpawnParameters spawnParams = UE4::FActorSpawnParameters();
 				if (GameProfile::SelectedGameProfile.StaticLoadObject)
 				{
 					Log::Info("StaticLoadObject Found");
@@ -124,7 +124,7 @@ namespace Hooks
 				transform.Translation = UE4::FVector(0, 0, 0);
 				transform.Rotation = UE4::FQuat(0, 0, 0, 0);
 				transform.Scale3D = UE4::FVector(1, 1, 1);
-				UE4::FActorSpawnParameters spawnParams = UE4::FActorSpawnParameters::FActorSpawnParameters();
+				UE4::FActorSpawnParameters spawnParams = UE4::FActorSpawnParameters();
 				for (int i = 0; i < Global::GetGlobals()->ModInfoList.size(); i++)
 				{
 					std::wstring CurrentMod;

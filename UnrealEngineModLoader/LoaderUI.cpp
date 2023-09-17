@@ -58,7 +58,7 @@ void UILogicTick()
 	while (true)
 	{
 		if (GetAsyncKeyState(VK_F1) != 0)
-			TickVars::f1_pressed = true;
+			TickVars::f1_pressed = !DmgConfig::Instance.isDX12;
 		else if (TickVars::f1_pressed)
 		{
 			TickVars::f1_pressed = false;
@@ -244,16 +244,23 @@ void ShowTools()
 		UITools::WorldDump();
 	}
 
-	static char Command[128];
-	ImGui::Spacing();
-	ImGui::Separator();
-	ImGui::Text("Execute Console Command");
-	ImGui::InputText("", Command, IM_ARRAYSIZE(Command));
-	if (ImGui::Button("Execute"))
-	{
-		std::string strCommand(Command);
-		std::wstring wstrCommand = std::wstring(strCommand.begin(), strCommand.end());
-		UITools::ExecuteCommand(wstrCommand);
+
+	if (!DmgConfig::Instance.SkipCallFunctionByNameWithArguments) {
+		static char Command[128];
+		ImGui::Spacing();
+		ImGui::Separator();
+		ImGui::Text("Execute Console Command");
+		ImGui::InputText("", Command, IM_ARRAYSIZE(Command));
+		if (ImGui::Button("Execute"))
+		{
+			std::string strCommand(Command);
+			std::wstring wstrCommand = std::wstring(strCommand.begin(), strCommand.end());
+			UITools::ExecuteCommand(wstrCommand);
+		}
+	} else {
+		ImGui::Spacing();
+		ImGui::Separator();
+		ImGui::Text("Console Command not available with current profile file.");
 	}
 }
 
@@ -516,8 +523,11 @@ void LoaderUI::HookDX()
 {
 	if (!LoaderUI::GetUI()->IsDXHooked)
 	{
-		CreateThread(NULL, 0, InitDX11Hook, NULL, 0, NULL);
-		LoaderUI::GetUI()->IsDXHooked = true;
+		// Don't hook DX?
+		if (!DmgConfig::Instance.isDX12) {
+			CreateThread(NULL, 0, InitDX11Hook, NULL, 0, NULL);
+			LoaderUI::GetUI()->IsDXHooked = true;
+		}
 	}
 }
 
